@@ -1,20 +1,15 @@
+$:.unshift File.dirname(__FILE__)
+
 require "aftership_api/courier"
 require "aftership_api/tracking"
 
 module AfterShipAPI
-  # configuration
-  def self.configure(api_key = nil, api_version = "2", api_url = "http://api.aftership.com:3000", api_format = "json")
-    return raise(StandardError.new("api_key is necessary!")) if api_key.nil?
-    @@api_key = api_key
-    @@api_version = api_version
-    @@api_url = api_url
-    @@api_format = api_format
-    return
+  class << self;
+    attr_accessor :api_key
   end
 
-  # several getters
-  def self.api_key; @@api_key; end
-  def self.api_version; @@api_version; end
-  def self.api_url; @@api_url; end
-  def self.api_format; @@api_format; end
+  API_VERSION = "2"
+  API_URL = "https://api.aftership.com"
+  API_FORMAT = "json"
+
 end
