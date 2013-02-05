@@ -1,6 +1,8 @@
 require 'httpi'
 require 'json'
 
+HTTPI.log = false
+
 module AfterShipAPI
   class Base
 

@@ -37,6 +37,10 @@ You can retrieve your api key at [https://www.aftership.com/connect/api](https:/
 Usage
 =====
 ###1. Setup
+Before using API, please include the gem in your script
+
+	require 'rubygems'
+	require 'aftership_api'
 You should set you API key before making any request to AfterShip.
 
 	AfterShipAPI.api_key = "YOUR_API_KEY"
