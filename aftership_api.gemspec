@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = 'aftership_api'
   s.version = '1.0.0'
-  s.summary = 'AfterShip open APIs'
-  s.description = 'used for ruby developers to integrate with AfterShip'
+  s.summary = 'Wrapper for AfterShip API'
+  s.description = 'Developed for easy integration with AfterShip'
   s.required_ruby_version = '>= 1.8.7'
 
   s.author = 'LU Wenlong'
@@ -16,6 +16,4 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'httpi'
-
-  # s.add_development_dependency 'factory_girl'
 end
