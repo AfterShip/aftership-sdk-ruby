@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
-  s.name = 'aftership_api'
+  s.name = 'aftership_ruby'
   s.version = '1.0.0'
   s.summary = 'Wrapper for AfterShip API'
   s.description = 'Developed for easy integration with AfterShip'
