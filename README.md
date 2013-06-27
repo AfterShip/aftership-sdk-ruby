@@ -49,7 +49,7 @@ Replace "YOUR_API_KEY" to your AfterShip api key.
 ###2. Get Courier list
 You can retrive the list of couriers we support by calling:
 
-	AfterShipAPI::Courier.get_couriers
+	AfterShipAPI::V2::Courier.get_couriers
 	
 Result:
 
@@ -114,19 +114,19 @@ Result:
 ###3. Add tracking to AfterShip
 You can add tracking number to AfterShip by calling
 
-	AfterShipAPI::Tracking.create("218501627271", "toll-global-express")
+	AfterShipAPI::V2::Tracking.create("218501627271", "toll-global-express")
 
 The first paramter is the tracking number and the second parameter is the courier slug.
 Optionally, you can pass extra paramaters to our API, for example, customer name:
 	
-	AfterShipAPI::Tracking.create("218501627271", "toll-global-express", customer_name: "John Doe")
+	AfterShipAPI::V2::Tracking.create("218501627271", "toll-global-express", customer_name: "John Doe")
 	
 For extra parameters list, please consult our API specification [https://github.com/AfterShip/api/wiki/Create-Single-Tracking-Shipment](https://github.com/AfterShip/api/wiki/Create-Single-Tracking-Shipment)
 
 ###4.Get tracking result
 You can restrive your tracking result by calling 
 
-	=> AfterShipAPI::Tracking.get("218501627271", "toll-global-express")
+	=> AfterShipAPI::V2::Tracking.get("218501627271", "toll-global-express")
 
 It will return the tracking detail:
 	
