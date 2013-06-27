@@ -1,4 +1,4 @@
-aftership_ruby
+aftership-ruby
 ==============
 
 Ruby Gem for AfterShip API.
@@ -15,7 +15,7 @@ Installation
 
 ###1. Add the following line to your application's Gemfile
 
-     gem "aftership_ruby", "~> 1.0.0"
+     gem "aftership", "~> 1.0.2"
 
 ###2. Run bundler
 
