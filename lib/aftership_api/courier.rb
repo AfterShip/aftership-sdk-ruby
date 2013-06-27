@@ -1,9 +1,11 @@
 require File.dirname(__FILE__) + '/base'
 
 module AfterShipAPI
-  class Courier < AfterShipAPI::Base
-    def self.get_couriers
-      call(:get, "couriers")
+  module V2
+    class Courier < AfterShipAPI::V2::Base
+      def self.get_couriers
+        call(:get, "couriers")
+      end
     end
   end
 end

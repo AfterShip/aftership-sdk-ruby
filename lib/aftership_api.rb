@@ -11,5 +11,4 @@ module AfterShipAPI
   API_VERSION = "2"
   API_URL = "https://api.aftership.com"
   API_FORMAT = "json"
-
 end
