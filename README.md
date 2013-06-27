@@ -1,4 +1,4 @@
-aftership_ruby
+aftership-ruby
 ==============
 
 Ruby Gem for AfterShip API.
