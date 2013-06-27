@@ -3,12 +3,12 @@ require 'json'
 
 HTTPI.log = false
 
-module AfterShipAPI
+module AfterShip
   module V2
     class Base
       def self.call(http_verb_method, *args)
-        url = "#{AfterShipAPI::API_URL}/v#{AfterShipAPI::API_VERSION}/#{args.first.to_s}.#{AfterShipAPI::API_FORMAT}"
-        req_body = {:api_key => AfterShipAPI.api_key}
+        url = "#{AfterShip::URL}/v#{AfterShip::VERSION}/#{args.first.to_s}.#{AfterShip::FORMAT}"
+        req_body = {:api_key => AfterShip.api_key}
         if args.last.is_a?(Hash)
           args.last.each do |k, v|
             HTTPI.logger.warn("this field #{k} should be array") if %w(emails smses).include?(k.to_s) && !v.is_a?(Array)
@@ -24,13 +24,13 @@ module AfterShipAPI
         response = HTTPI.send(http_verb_method.to_sym, request)
 
         if response.nil?
-          raise(AfterShipAPIError.new("response is nil"))
+          raise(AfterShipError.new("response is nil"))
         else
           return JSON.parse(response.raw_body)
         end
       end
 
-      class AfterShipAPIError < StandardError;
+      class AfterShipError < StandardError;
       end
     end
   end

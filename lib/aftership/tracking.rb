@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/base'
 
-module AfterShipAPI
+module AfterShip
   module V2
-    class Tracking < AfterShipAPI::V2::Base
+    class Tracking < AfterShip::V2::Base
       def self.create(tracking_number, courier, opt = {})
         if tracking_number.empty? || courier.empty?
           raise ArgumentError.new("both tracking_number and courier are necessary for this method call")
