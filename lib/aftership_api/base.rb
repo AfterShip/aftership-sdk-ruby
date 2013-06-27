@@ -9,7 +9,11 @@ module AfterShipAPI
     def self.call(http_verb_method, *args)
       url = "#{AfterShipAPI::API_URL}/v#{AfterShipAPI::API_VERSION}/#{args.first.to_s}.#{AfterShipAPI::API_FORMAT}"
       req_body = {:api_key => AfterShipAPI.api_key}
-      req_body.merge!(args.last) if args.last.is_a?(Hash)
+      if args.last.is_a?(Hash)
+        opt = {}
+        args.last.each {|k, v| v.is_a?(Array) ? opt["#{k}[]"] = v : opt[k] = v}
+        req_body.merge!(opt)
+      end
 
       request = HTTPI::Request.new(url)
       request.body = req_body
