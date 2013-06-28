@@ -15,7 +15,7 @@ Installation
 
 ###1. Add the following line to your application's Gemfile
 
-     gem "aftership", "~> 1.0.2"
+     gem "aftership", "~> 1.0.3"
 
 ###2. Run bundler
 
@@ -40,16 +40,16 @@ Usage
 Before using API, please include the gem in your script
 
 	require 'rubygems'
-	require 'aftership_api'
+	require 'aftership'
 You should set you API key before making any request to AfterShip.
 
-	AfterShipAPI.api_key = "YOUR_API_KEY"
+	AfterShip.api_key = "YOUR_API_KEY"
 Replace "YOUR_API_KEY" to your AfterShip api key.
 
 ###2. Get Courier list
 You can retrive the list of couriers we support by calling:
 
-	AfterShipAPI::V2::Courier.get_couriers
+	AfterShip::V2::Courier.get_couriers
 	
 Result:
 
@@ -114,19 +114,19 @@ Result:
 ###3. Add tracking to AfterShip
 You can add tracking number to AfterShip by calling
 
-	AfterShipAPI::V2::Tracking.create("218501627271", "toll-global-express")
+	AfterShip::V2::Tracking.create("218501627271", "toll-global-express")
 
 The first paramter is the tracking number and the second parameter is the courier slug.
 Optionally, you can pass extra paramaters to our API, for example, customer name:
 	
-	AfterShipAPI::V2::Tracking.create("218501627271", "toll-global-express", customer_name: "John Doe")
+	AfterShip::V2::Tracking.create("218501627271", "toll-global-express", customer_name: "John Doe")
 	
 For extra parameters list, please consult our API specification [https://github.com/AfterShip/api/wiki/Create-Single-Tracking-Shipment](https://github.com/AfterShip/api/wiki/Create-Single-Tracking-Shipment)
 
 ###4.Get tracking result
 You can restrive your tracking result by calling 
 
-	=> AfterShipAPI::V2::Tracking.get("218501627271", "toll-global-express")
+	=> AfterShip::V2::Tracking.get("218501627271", "toll-global-express")
 
 It will return the tracking detail:
 	
