@@ -5,10 +5,10 @@ require "aftership/tracking"
 
 module AfterShip
   class << self;
-    attr_accessor :api_key
+    attr_accessor :api_key_v2
+    attr_accessor :api_key_v3
   end
 
-  VERSION = "2"
   URL = "https://api.aftership.com"
   FORMAT = "json"
 end
