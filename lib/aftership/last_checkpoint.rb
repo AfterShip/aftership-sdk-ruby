@@ -1,0 +1,17 @@
+require File.dirname(__FILE__) + '/base'
+
+module AfterShip
+  module V3
+    class LastCheckpoint < AfterShip::V3::Base
+
+      def self.get(slug = '', tracking_number = '')
+        if slug.empty? || tracking_number.empty?
+          raise ArgumentError.new("slug and tracking_number are required.")
+        else
+          call(:get, "last_checkpoint/#{slug}/#{tracking_number}")
+        end
+      end
+
+    end
+  end
+end
