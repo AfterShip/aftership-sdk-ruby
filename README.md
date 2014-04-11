@@ -19,7 +19,7 @@ AfterShip provides an automated way for online merchants to track packages and s
 1. Add the following line to your application's Gemfile
 
     ```
-    gem "aftership", "~> 3.0.0"
+    gem "aftership", "~> 3.0"
     ```
 
 2. Run bundler
