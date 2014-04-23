@@ -1,5 +1,9 @@
 require File.dirname(__FILE__) + '/base'
 
+# Tracking
+# Create trackings, update trackings, and get tracking results.
+# see:
+#   https://www.aftership.com/docs/api/3.0/tracking
 module AfterShip
   module V3
     class Tracking < AfterShip::V3::Base
