@@ -23,9 +23,6 @@ module AfterShip
         request.headers = {"aftership-api-key" => AfterShip.api_key}
         request.body = body.to_json
 
-        puts "request"
-        puts request.url
-
         response = HTTPI.send(http_verb_method.to_sym, request)
 
         # different
