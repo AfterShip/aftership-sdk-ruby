@@ -30,11 +30,11 @@ module AfterShip
       end
 
       #GET /trackings/:slug/:tracking_number
-      def self.get(slug, tracking_number)
+      def self.get(slug, tracking_number, params = {})
         if slug.empty? || tracking_number.empty?
           raise ArgumentError.new("slug and tracking_number are required.")
         end
-        call(:get, "trackings/#{slug}/#{tracking_number}")
+        call(:get, "trackings/#{slug}/#{tracking_number}", params)
       end
 
       #PUT /trackings/:slug/:tracking_number
