@@ -20,7 +20,7 @@ module AfterShip
         end
 
         request = HTTPI::Request.new(url)
-        request.headers = {"aftership-api-key" => AfterShip.api_key}
+        request.headers = {"aftership-api-key" => AfterShip.api_key, 'Content-Type' => 'application/json'}
         request.body = body.to_json
 
         response = HTTPI.send(http_verb_method.to_sym, request)
