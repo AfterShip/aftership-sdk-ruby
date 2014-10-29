@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.requirements << 'none'
 
-  s.add_dependency 'httpi', '~> 2.1'
+  s.add_dependency 'httpi', '~> 2.2.7'
 end
