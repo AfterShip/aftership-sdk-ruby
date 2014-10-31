@@ -116,3 +116,9 @@ AfterShip provides an automated way for online merchants to track packages and s
 ## The License (MIT)
 
 Released under the MIT license. See the LICENSE file for the complete wording.
+
+
+## Contributor
+
+- Alex Topalov <me@alextopalov.com>
+
