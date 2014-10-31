@@ -48,6 +48,8 @@ module AfterShip
 
       #POST /trackings/:slug/:tracking_number/reactivate
       def self.reactivate(slug, tracking_number)
+        puts "This method will be deprecate in AfterShipV4"
+
         if slug.empty? || tracking_number.empty?
           raise ArgumentError.new("slug and tracking_number are required.")
         end

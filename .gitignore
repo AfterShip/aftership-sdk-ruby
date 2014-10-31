@@ -71,3 +71,5 @@ tmtags
 .*
 !.gitignore
 *~
+
+Gemfile.lock
