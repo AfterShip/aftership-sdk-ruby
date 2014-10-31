@@ -11,18 +11,18 @@ AfterShip provides an automated way for online merchants to track packages and s
 ### Changes
 
 * 2014-10-31 Pump version to 4.1.0
-* Replaced HTTPI with HTTPClient
+  - Replaced HTTPI with HTTPClient
 
 * 2014-10-28 Pump version to 4.0.0, support latest v4 api
-* Adding deprecation messages
-* Adding new api endpoints
-* Make all changes regarding new API version
+  - Adding deprecation messages
+  - Adding new api endpoints
+  - Make all changes regarding new API version
 
 * 2014-04-11 Pump version to 3.0.1, support latest v3 api
-* Removed the debug message
+  - Removed the debug message
 
 * 2014-04-11 Pump version to 3.0.0, support latest v3 api
-* Change license to MIT
+  - Change license to MIT
 
 
 ## Installation
