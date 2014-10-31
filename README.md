@@ -9,9 +9,9 @@ This extension helps developers to integrate with AfterShip easily.
 AfterShip provides an automated way for online merchants to track packages and send their customers delivery status notifications. Customers no longer need to deal with tracking numbers and track packages on their own. With AfterShip, online merchants extend their customer service after the point of purchase by keeping their customers actively informed, while saving time and money by reducing customers’ questions about the status of their purchase delivery.
 
 ### Changes
-* 2014-10-31 Pump version to 4.0.1
-* Support SSL connection on TLS1.0+ only
 
+* 2014-10-31 Pump version to 4.1.0
+* Replaced HTTPI with HTTPClient
 
 * 2014-10-28 Pump version to 4.0.0, support latest v4 api
 * Adding deprecation messages
@@ -30,7 +30,7 @@ AfterShip provides an automated way for online merchants to track packages and s
 1. Add the following line to your application's Gemfile
 
     ```
-    gem "aftership", "~> 3.0"
+    gem "aftership", "~> 4.1.0"
     ```
 
 2. Run bundler
@@ -38,7 +38,6 @@ AfterShip provides an automated way for online merchants to track packages and s
     ```
     bundle install
     ```
-
 
 ## Configuration
 
@@ -54,7 +53,6 @@ AfterShip provides an automated way for online merchants to track packages and s
     You can retrieve your api key at
 
     https://www.aftership.com/apps/api
-
 
 ## Usage
 
@@ -75,6 +73,28 @@ AfterShip provides an automated way for online merchants to track packages and s
 
 2. Coding
 
+
+	### V4
+	```
+ 	require('aftership')
+    AfterShip.api_key = 'YOUR_API_KEY'
+
+    AfterShip::V4::Courier.get
+    AfterShip::V4::Courier.get_all
+    AfterShip::V4::Courier.detect({:tracking_number => 'EJ276142450JP'})
+
+    AfterShip::V4::Tracking.create('1ZA6F598D992381375', {:emails => ['a@abcd.com', 'asdfasdfs@gmail.com']})
+    AfterShip::V4::Tracking.get('ups', '1ZA6F598D992381375')
+    AfterShip::V4::Tracking.get_all
+    AfterShip::V4::Tracking.update('ups', '1ZA6F598D992381375', {:title => 'Testing'})
+    AfterShip::V4::Tracking.retrack('ups', '1ZA6F598D992381375')
+    AfterShip::V4::Tracking.delete('ups', '1ZA6F598D992381375')
+
+    AfterShip::V4::LastCheckpoint.get('ups', '1ZA6F598D992381375')
+	```
+
+	### V3
+
     ```
     require('aftership')
     AfterShip.api_key = 'YOUR_API_KEY'
@@ -82,18 +102,16 @@ AfterShip provides an automated way for online merchants to track packages and s
     AfterShip::V3::Courier.get
     AfterShip::V3::Courier.detect('1ZA6F598D992381375')
 
-    AfterShip::V3::Tracking.create('1ZA6F598D992381375', {"emails"=>["a@abcd.com", "asdfasdfs@gmail.com"]})
+    AfterShip::V3::Tracking.create('1ZA6F598D992381375', {'emails' => ['a@abcd.com', 'asdfasdfs@gmail.com']})
     AfterShip::V3::Tracking.get('ups', '1ZA6F598D992381375')
-    AfterShip::V3::Tracking.get_multi()
-    AfterShip::V3::Tracking.delete('ups', '1ZA6F598D992381375')
-    AfterShip::V3::Tracking.update('ups', '1ZA6F598D992381375', {:title=>"Testing"})
+    AfterShip::V3::Tracking.get_multi
+    AfterShip::V3::Tracking.update('ups', '1ZA6F598D992381375', {:title => 'Testing'})
     AfterShip::V3::Tracking.reactivate('ups', '1ZA6F598D992381375')
+    AfterShip::V3::Tracking.delete('ups', '1ZA6F598D992381375')
 
     AfterShip::V3::LastCheckpoint.get('ups', '1ZA6F598D992381375')
 
     ```
-
-
 
 ## The License (MIT)
 
