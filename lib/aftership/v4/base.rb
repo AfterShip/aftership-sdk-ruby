@@ -3,6 +3,7 @@ require 'json'
 
 HTTPI.log = false
 
+
 module AfterShip
   module V4
     class Base
@@ -45,6 +46,7 @@ module AfterShip
 
       def request
         req = HTTPI::Request.new(url)
+        req.auth.ssl.ssl_version = :TLSv1
         req.headers = {"aftership-api-key" => AfterShip.api_key, 'Content-Type' => 'application/json'}
         req.body = body.to_json
         req

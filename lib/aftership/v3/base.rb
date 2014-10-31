@@ -20,6 +20,7 @@ module AfterShip
         end
 
         request = HTTPI::Request.new(url)
+        request.auth.ssl.ssl_version = :TLSv1
         request.headers = {"aftership-api-key" => AfterShip.api_key, 'Content-Type' => 'application/json'}
         request.body = body.to_json
 
