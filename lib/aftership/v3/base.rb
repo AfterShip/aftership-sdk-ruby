@@ -1,42 +1,47 @@
-require 'httpi'
+require 'httpclient'
 require 'json'
 
-HTTPI.log = false
-
 module AfterShip
-  module V3
-    class Base
+	module V3
+		class Base
+			class AfterShipError < StandardError;
+			end
+			attr_reader :http_verb_method, :end_point, :query, :body
 
-      def self.call(http_verb_method, end_point, params = {}, body = {})
-        url = "#{AfterShip::URL}/v3/#{end_point.to_s}"
-        unless params.empty?
-          url += '?' + Rack::Utils.build_query(params)
-        end
+			def initialize(http_verb_method, end_point, query = {}, body = {})
+				@http_verb_method = http_verb_method
+				@end_point = end_point
+				@query = query
+				@body = body
 
-        unless body.empty?
-          body.each do |k, v|
-            HTTPI.logger.warn("the #{k} field  should be an array") if %w(emails smses).include?(k.to_s) && !v.is_a?(Array)
-          end
-        end
+				@client = HTTPClient.new
+			end
 
-        request = HTTPI::Request.new(url)
-        request.auth.ssl.ssl_version = :TLSv1
-        request.headers = {"aftership-api-key" => AfterShip.api_key, 'Content-Type' => 'application/json'}
-        request.body = body.to_json
+			def call
+				header = {'aftership-api-key' => AfterShip.api_key, 'Content-Type' => 'application/json'}
 
-        response = HTTPI.send(http_verb_method.to_sym, request)
+				parameters = {
+					:query => query,
+					:body => body.to_json,
+					:header => header
+				}
 
-        # different
-        if response.nil?
-          raise(AfterShipError.new("response is nil"))
-        else
-          return JSON.parse(response.raw_body)
-        end
-      end
+				response = @client.send(http_verb_method, url, parameters)
 
-      class AfterShipError < StandardError;
+				if response.body
+					JSON.parse(response.body)
+				else
+					raise(AfterShipError.new('response is nil'))
+				end
 
-      end
-    end
-  end
+			end
+
+			private
+
+			def url
+				"#{AfterShip::URL}/v3/#{end_point.to_s}"
+			end
+
+		end
+	end
 end
