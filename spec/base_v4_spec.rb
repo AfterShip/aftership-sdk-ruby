@@ -2,23 +2,23 @@ require 'spec_helper'
 
 describe AfterShip::V4::Base do
   let(:http_verb_method) { 'get' }
-  let(:end_point)        { 'trackings' }
-  let(:params)           { { courier: 'usps' } }
-  let(:body)             { { emails: ['me@example.com'] } }
-  subject                { described_class.new(http_verb_method, end_point, params, body) }
+  let(:end_point) { 'trackings' }
+  let(:params) { { courier: 'usps' } }
+  let(:body) { { emails: ['me@example.com'] } }
+  subject { described_class.new(http_verb_method, end_point, params, body) }
 
-  its(:body)             { should(eq(body)) }
-  its(:params)           { should(eq(params)) }
-  its(:end_point)        { should(eq(end_point)) }
+  its(:body) { should(eq(body)) }
+  its(:params) { should(eq(params)) }
+  its(:end_point) { should(eq(end_point)) }
   its(:http_verb_method) { should(eq(http_verb_method)) }
 
   describe ".call" do
-    let(:body)     { { emails: '', smses: '' } }
+    let(:body) { { emails: '', smses: '' } }
     let(:response) { double(raw_body: '{}') }
-    let(:request)  { double }
-    before         {
-		#HTTPI.logger.stub(:warn)
-	}
+    let(:request) { double }
+    before {
+      #HTTPI.logger.stub(:warn)
+    }
 
     it 'validates' do
       #HTTPI.logger.should_receive(:warn).with("the emails field should be an array").once
