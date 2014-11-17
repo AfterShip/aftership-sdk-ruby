@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = ['support@aftership.com']
   s.homepage = 'https://www.aftership.com'
 
-  s.files         = Dir['{bin,lib}/**/*', 'README.md']
+  s.files = Dir['{bin,lib}/**/*', 'README.md']
   s.require_paths = ['lib']
   s.requirements << 'none'
 
