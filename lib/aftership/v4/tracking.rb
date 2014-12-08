@@ -40,6 +40,14 @@ module AfterShip
 				new(:get, "trackings/#{slug}/#{tracking_number}", params).call
 			end
 
+			#GET /trackings/:id
+			def self.get_by_id(id, params = {})
+				if id.empty?
+					raise ArgumentError.new('id is required.')
+				end
+				new(:get, "trackings/#{id}", params).call
+			end
+
 			#GET /trackings
 			def self.get_all(params = {})
 				new(:get, 'trackings', params).call
