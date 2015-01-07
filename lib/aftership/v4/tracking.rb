@@ -31,6 +31,14 @@ module AfterShip
 				end
 				new(:delete, "trackings/#{slug}/#{tracking_number}").call
 			end
+			
+			#DELETE /trackings/:id
+			def self.delete_by_id(id)
+				if id.empty?
+					raise ArgumentError.new('id is required.')
+				end
+				new(:delete, "trackings/#{id}").call
+                        end
 
 			#GET /trackings/:slug/:tracking_number
 			def self.get(slug, tracking_number, params = {})
