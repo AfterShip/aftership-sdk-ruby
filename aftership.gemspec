@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = 'aftership'
-  s.version = '4.1.0'
+  s.version = '4.1.1'
   s.licenses = ['MIT']
   s.summary = 'Formerly known as aftership_ruby and a wrapper for AfterShip API. Support the latest V3/V4 API'
   s.description = 'Developed for easy integration with AfterShip'
