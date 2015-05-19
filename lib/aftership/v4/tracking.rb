@@ -6,7 +6,7 @@ module AfterShip
 
 			#POST /trackings
 			def self.create(tracking_number, params = {})
-				if tracking_number.blank?
+				if tracking_number.empty?
 					raise ArgumentError.new('tracking_number is required.')
 				else
 					query_hash = {:tracking_number => tracking_number}
@@ -18,7 +18,7 @@ module AfterShip
 
 			#POST /trackings/:slug/:tracking_number/retrack
 			def self.retrack(slug, tracking_number)
-				if slug.blank? || tracking_number.blank?
+				if slug.empty? || tracking_number.empty?
 					raise ArgumentError.new('slug and tracking_number are required.')
 				end
 				new(:post, "trackings/#{slug}/#{tracking_number}/retrack").call
@@ -26,12 +26,12 @@ module AfterShip
 
 			#DELETE /trackings/:slug/:tracking_number
 			def self.delete(slug, tracking_number)
-				if slug.blank? || tracking_number.blank?
+				if slug.empty? || tracking_number.empty?
 					raise ArgumentError.new('slug and tracking_number are required.')
 				end
 				new(:delete, "trackings/#{slug}/#{tracking_number}").call
 			end
-			
+
 			#DELETE /trackings/:id
 			def self.delete_by_id(id)
 				if id.empty?
@@ -42,7 +42,7 @@ module AfterShip
 
 			#GET /trackings/:slug/:tracking_number
 			def self.get(slug, tracking_number, params = {})
-				if slug.blank? || tracking_number.blank?
+				if slug.empty? || tracking_number.empty?
 					raise ArgumentError.new('slug and tracking_number are required.')
 				end
 				new(:get, "trackings/#{slug}/#{tracking_number}", params).call
@@ -50,7 +50,7 @@ module AfterShip
 
 			#GET /trackings/:id
 			def self.get_by_id(id, params = {})
-				if id.blank?
+				if id.empty?
 					raise ArgumentError.new('id is required.')
 				end
 				new(:get, "trackings/#{id}", params).call
@@ -63,7 +63,7 @@ module AfterShip
 
 			#PUT /trackings/:slug/:tracking_number
 			def self.update(slug, tracking_number, params = {})
-				if slug.blank? || tracking_number.blank?
+				if slug.empty? || tracking_number.empty?
 					raise ArgumentError.new('slug and tracking_number are required.')
 				end
 				body = {:tracking => params}
