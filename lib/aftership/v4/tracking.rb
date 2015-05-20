@@ -42,7 +42,7 @@ module AfterShip
 
 			#GET /trackings/:slug/:tracking_number
 			def self.get(slug, tracking_number, params = {})
-        if slug.nil? ? slug.empty? || tracking_number.nil? || tracking_number.empty?
+        if slug.nil? || slug.empty? || tracking_number.nil? || tracking_number.empty?
 					raise ArgumentError.new('slug and tracking_number are required.')
 				end
 				new(:get, "trackings/#{slug}/#{tracking_number}", params).call
