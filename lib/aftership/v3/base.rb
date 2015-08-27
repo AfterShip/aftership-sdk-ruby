@@ -2,46 +2,46 @@ require 'httpclient'
 require 'json'
 
 module AfterShip
-	module V3
-		class Base
-			class AfterShipError < StandardError;
-			end
-			attr_reader :http_verb_method, :end_point, :query, :body
+  module V3
+    class Base
+      class AfterShipError < StandardError;
+      end
+      attr_reader :http_verb_method, :end_point, :query, :body
 
-			def initialize(http_verb_method, end_point, query = {}, body = {})
-				@http_verb_method = http_verb_method
-				@end_point = end_point
-				@query = query
-				@body = body
+      def initialize(http_verb_method, end_point, query = {}, body = {})
+        @http_verb_method = http_verb_method
+        @end_point = end_point
+        @query = query
+        @body = body
 
-				@client = HTTPClient.new
-			end
+        @client = HTTPClient.new
+      end
 
-			def call
-				header = {'aftership-api-key' => AfterShip.api_key, 'Content-Type' => 'application/json'}
+      def call
+        header = {'aftership-api-key' => AfterShip.api_key, 'Content-Type' => 'application/json'}
 
-				parameters = {
-					:query => query,
-					:body => body.to_json,
-					:header => header
-				}
+        parameters = {
+          :query => query,
+          :body => body.to_json,
+          :header => header
+        }
 
-				response = @client.send(http_verb_method, url, parameters)
+        response = @client.send(http_verb_method, url, parameters)
 
-				if response.body
-					JSON.parse(response.body)
-				else
-					raise(AfterShipError.new('response is nil'))
-				end
+        if response.body
+          JSON.parse(response.body)
+        else
+          raise(AfterShipError.new('response is nil'))
+        end
 
-			end
+      end
 
-			private
+      private
 
-			def url
-				"#{AfterShip::URL}/v3/#{end_point.to_s}"
-			end
+      def url
+        "#{AfterShip::URL}/v3/#{end_point.to_s}"
+      end
 
-		end
-	end
+    end
+  end
 end
