@@ -17,8 +17,8 @@ describe AfterShip::V4::Base do
     let(:response) { double(raw_body: '{}') }
     let(:request)  { double }
     before         {
-		#HTTPI.logger.stub(:warn)
-	}
+    #HTTPI.logger.stub(:warn)
+  }
 
     it 'validates' do
       #HTTPI.logger.should_receive(:warn).with("the emails field should be an array").once
