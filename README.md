@@ -93,26 +93,6 @@ AfterShip provides an automated way for online merchants to track packages and s
     AfterShip::V4::LastCheckpoint.get('ups', '1ZA6F598D992381375')
 	```
 
-	### V3
-
-    ```
-    require('aftership')
-    AfterShip.api_key = 'YOUR_API_KEY'
-
-    AfterShip::V3::Courier.get
-    AfterShip::V3::Courier.detect('1ZA6F598D992381375')
-
-    AfterShip::V3::Tracking.create('1ZA6F598D992381375', {'emails' => ['a@abcd.com', 'asdfasdfs@gmail.com']})
-    AfterShip::V3::Tracking.get('ups', '1ZA6F598D992381375')
-    AfterShip::V3::Tracking.get_multi
-    AfterShip::V3::Tracking.update('ups', '1ZA6F598D992381375', {:title => 'Testing'})
-    AfterShip::V3::Tracking.reactivate('ups', '1ZA6F598D992381375')
-    AfterShip::V3::Tracking.delete('ups', '1ZA6F598D992381375')
-
-    AfterShip::V3::LastCheckpoint.get('ups', '1ZA6F598D992381375')
-
-    ```
-
 ## The License (MIT)
 
 Released under the MIT license. See the LICENSE file for the complete wording.
