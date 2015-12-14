@@ -12,7 +12,8 @@ AfterShip provides an automated way for online merchants to track packages and s
 * 2015-12-14 4.3.0
   - Added rescue methods for parsing JSON, and try to retrieve error codes from cloudflare
   - Added /trackings/exports method
-
+  - Added auto-retry mechanism if invalid JSON response retrieved
+  
 * 2015-11-11 Pump version to 4.2.0
   - Removed v3 code, support ENV variable AFTERSHIP_API_ENDPOINT for testing
 
