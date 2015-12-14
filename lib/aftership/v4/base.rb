@@ -29,19 +29,16 @@ module AfterShip
 
         response = @client.send(http_verb_method, url, parameters)
 
+        cf_ray = ''
+
+        if response.headers
+          cf_ray = response.headers['CF-RAY']
+        end
+
         if response.body
           begin
             JSON.parse(response.body)
           rescue
-            # try to grab ray id from cloudflare
-            matched = response.body.match(/Ray ID: <strong>(.+?)<\/strong>/)
-
-            ray_id = ''
-
-            if matched
-              ray_id = matched[1]
-            end
-
             {
               :meta => {
                   :code => 500,
@@ -50,10 +47,9 @@ module AfterShip
               },
               :data => {
                   :body => response.body,
-                  :ray_id => ray_id
+                  :cf_ray => cf_ray
               }
             }
-
           end
         else
           raise(AfterShipError.new('response is nil'))
