@@ -9,6 +9,10 @@ This extension helps developers to integrate with AfterShip easily.
 AfterShip provides an automated way for online merchants to track packages and send their customers delivery status notifications. Customers no longer need to deal with tracking numbers and track packages on their own. With AfterShip, online merchants extend their customer service after the point of purchase by keeping their customers actively informed, while saving time and money by reducing customers’ questions about the status of their purchase delivery.
 
 ### Changes
+* 2015-12-14 4.3.0
+  - Added rescue methods for parsing JSON, and try to retrieve error codes from cloudflare
+  - Added /trackings/exports method
+
 * 2015-11-11 Pump version to 4.2.0
   - Removed v3 code, support ENV variable AFTERSHIP_API_ENDPOINT for testing
 
