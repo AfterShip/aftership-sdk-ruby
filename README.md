@@ -9,6 +9,9 @@ This extension helps developers to integrate with AfterShip easily.
 AfterShip provides an automated way for online merchants to track packages and send their customers delivery status notifications. Customers no longer need to deal with tracking numbers and track packages on their own. With AfterShip, online merchants extend their customer service after the point of purchase by keeping their customers actively informed, while saving time and money by reducing customers’ questions about the status of their purchase delivery.
 
 ### Changes
+* 2016-01-11 4.3.1
+  - Updated gem `httpclient` version to 2.7.1
+
 * 2015-12-14 4.3.0
   - Added rescue methods for parsing JSON, and try to retrieve error codes from cloudflare
   - Added /trackings/exports method
@@ -37,7 +40,7 @@ AfterShip provides an automated way for online merchants to track packages and s
 1. Add the following line to your application's Gemfile
 
     ```
-    gem "aftership", "~> 4.1.0"
+    gem "aftership", "~> 4.3.1"
     ```
 
 2. Run bundler
