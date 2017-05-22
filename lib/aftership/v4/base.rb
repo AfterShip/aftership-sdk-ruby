@@ -4,7 +4,7 @@ require 'json'
 module AfterShip
   module V4
     class Base
-      class AfterShipError < StandardError;
+      class AfterShipError < StandardError
       end
       attr_reader :http_verb_method, :end_point, :query, :body
 
@@ -22,13 +22,15 @@ module AfterShip
       end
 
       def call
-
-        header = {'aftership-api-key' => AfterShip.api_key, 'Content-Type' => 'application/json'}
+        header = {
+          'aftership-api-key' => AfterShip.api_key,
+          'Content-Type' => 'application/json'
+        }
 
         parameters = {
-            :query => query,
-            :body => body.to_json,
-            :header => header
+          query: query,
+          body: body.to_json,
+          header: header
         }
 
         cf_ray = ''
@@ -37,10 +39,7 @@ module AfterShip
         loop do
           response = @client.send(http_verb_method, url, parameters)
 
-          if response.headers
-            cf_ray = response.headers['CF-RAY']
-          end
-
+          cf_ray = response.headers['CF-RAY'] if response.headers
 
           if response.body
             begin
@@ -52,26 +51,26 @@ module AfterShip
               sleep CALL_SLEEP
 
               response = {
-                  :meta => {
-                      :code => 500,
-                      :message => 'Something went wrong on AfterShip\'s end.',
-                      :type => 'InternalError'
-                  },
-                  :data => {
-                      :body => response.body,
-                      :cf_ray => cf_ray
-                  }
+                meta: {
+                  code: 500,
+                  message: 'Something went wrong on AfterShip\'s end.',
+                  type: 'InternalError'
+                },
+                data: {
+                  body: response.body,
+                  cf_ray: cf_ray
+                }
               }
             end
           else
             response = {
-                :meta => {
-                    :code => 500,
-                    :message => 'Something went wrong on AfterShip\'s end.',
-                    :type => 'InternalError'
-                },
-                :data => {
-                }
+              meta: {
+                code: 500,
+                message: 'Something went wrong on AfterShip\'s end.',
+                type: 'InternalError'
+              },
+              data: {
+              }
             }
           end
 
@@ -84,9 +83,8 @@ module AfterShip
       private
 
       def url
-        "#{AfterShip::URL}/v4/#{end_point.to_s}"
+        "#{AfterShip::URL}/v4/#{end_point}"
       end
-
     end
   end
 end
