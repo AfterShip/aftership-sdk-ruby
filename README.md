@@ -1,3 +1,5 @@
+## This branch is under development, do NOT use it in production (yet)
+
 ## aftership-ruby
 
 Ruby Gem for AfterShip API.
@@ -16,7 +18,7 @@ AfterShip provides an automated way for online merchants to track packages and s
   - Added rescue methods for parsing JSON, and try to retrieve error codes from cloudflare
   - Added /trackings/exports method
   - Added auto-retry mechanism if invalid JSON response retrieved
-  
+
 * 2015-11-11 Pump version to 4.2.0
   - Removed v3 code, support ENV variable AFTERSHIP_API_ENDPOINT for testing
 
@@ -111,4 +113,3 @@ Released under the MIT license. See the LICENSE file for the complete wording.
 ## Contributor
 
 - Alex Topalov <me@alextopalov.com>
-
