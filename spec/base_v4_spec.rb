@@ -8,7 +8,7 @@ describe AfterShip::V4::Base do
   subject                { described_class.new(http_verb_method, end_point, params, body) }
 
   its(:body)             { should(eq(body)) }
-  its(:params)           { should(eq(params)) }
+  its(:query)           { should(eq(params)) }
   its(:end_point)        { should(eq(end_point)) }
   its(:http_verb_method) { should(eq(http_verb_method)) }
 
