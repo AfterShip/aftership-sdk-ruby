@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.requirements << 'none'
 
-  s.add_dependency 'httpclient', '~> 2.7.1'
+  s.add_dependency 'http', '~> 2.2.1'
 
   s.add_development_dependency 'rspec', '~> 2.14.1'
   s.add_development_dependency 'pry'

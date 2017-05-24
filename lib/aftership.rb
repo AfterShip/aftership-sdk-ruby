@@ -1,6 +1,8 @@
-$LOAD_PATH.unshift File.dirname(__FILE__)
+require 'http'
+require 'json'
 
 require 'aftership/version'
+require 'aftership/v4/base'
 require 'aftership/v4/courier'
 require 'aftership/v4/tracking'
 require 'aftership/v4/last_checkpoint'
