@@ -8,6 +8,13 @@ module AfterShip
       @retries = 0
     end
 
+    # Performs a HTTP GET request.
+    #
+    # @param path [String]
+    # @param options [Hash]
+    # @example
+    #   .get('/labels')
+    #   .get('/labels', { params: { limit: 5 } })
     def get(path, options)
       handle_connection do
         HTTP
@@ -16,6 +23,13 @@ module AfterShip
       end
     end
 
+    # Performs a HTTP POST request.
+    #
+    # @param path [String]
+    # @param options [Hash]
+    # @example
+    #   .post('/labels')
+    #   .post('/labels', { json: { my: { sample: :data } } })
     def post(path, options)
       handle_connection do
         HTTP
@@ -24,6 +38,12 @@ module AfterShip
       end
     end
 
+    # Performs a HTTP PUT request.
+    #
+    # @param path [String]
+    # @param options [Hash]
+    # @example
+    #   .put('/trackings/foo/123', { sample: :data })
     def put(path, options)
       handle_connection do
         HTTP
@@ -32,6 +52,11 @@ module AfterShip
       end
     end
 
+    # Performs a HTTP DELETE request
+    #
+    # @param path [String]
+    # @example
+    #   .delete(' /trackings/foo/123')
     def delete(path, options)
       handle_connection do
         HTTP
