@@ -1,11 +1,11 @@
 ## aftership-ruby
 
-[![Build Status](https://travis-ci.org/aftership/aftership-sdk-ruby.svg?branch=master)](https://travis-ci.org/aftership/aftership-sdk-ruby)
-[![Code Climate](https://codeclimate.com/github/postmen/postmen-sdk-ruby/badges/gpa.svg)](https://codeclimate.com/github/aftership/aftership-sdk-ruby)
+[![Build Status](https://travis-ci.org/AfterShip/aftership-sdk-ruby.svg?branch=master)](https://travis-ci.org/aftership/aftership-sdk-ruby)
+[![Code Climate](https://codeclimate.com/github/AfterShip/aftership-sdk-ruby/badges/gpa.svg)](https://codeclimate.com/github/AfterShip/aftership-sdk-ruby)
 [![Gem Version](https://badge.fury.io/rb/aftership.svg)](https://badge.fury.io/rb/aftership)
-[![Dependency Status](https://gemnasium.com/badges/github.com/aftership/aftership-sdk-ruby.svg)](https://gemnasium.com/github.com/aftership/aftership-sdk-ruby)
-[![Coverage Status](https://coveralls.io/repos/github/aftership/aftership-sdk-ruby/badge.svg?branch=master)](https://coveralls.io/github/aftership/aftership-sdk-ruby?branch=master)
-[![Documentation status](https://inch-ci.org/github/aftership/aftership-sdk-ruby.svg?branch=master)](https://inch-ci.org/github/aftership/aftership-sdk-ruby)
+[![Dependency Status](https://gemnasium.com/badges/github.com/AfterShip/aftership-sdk-ruby.svg)](https://gemnasium.com/github.com/AfterShip/aftership-sdk-ruby)
+[![Coverage Status](https://coveralls.io/repos/github/AfterShip/aftership-sdk-ruby/badge.svg?branch=master)](https://coveralls.io/github/AfterShip/aftership-sdk-ruby?branch=master)
+[![Documentation status](https://inch-ci.org/github/AfterShip/aftership-sdk-ruby.svg?branch=master)](https://inch-ci.org/github/AfterShip/aftership-sdk-ruby)
 
 
 Ruby Gem for Aftership API.
