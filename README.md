@@ -1,6 +1,6 @@
 ## aftership-ruby
 
-[![Build Status](https://travis-ci.org/AfterShip/aftership-sdk-ruby.svg?branch=master)](https://travis-ci.org/aftership/aftership-sdk-ruby)
+[![Build Status](https://travis-ci.org/AfterShip/aftership-sdk-ruby.svg?branch=master)](https://travis-ci.org/AfterShip/aftership-sdk-ruby)
 [![Code Climate](https://codeclimate.com/github/AfterShip/aftership-sdk-ruby/badges/gpa.svg)](https://codeclimate.com/github/AfterShip/aftership-sdk-ruby)
 [![Gem Version](https://badge.fury.io/rb/aftership.svg)](https://badge.fury.io/rb/aftership)
 [![Dependency Status](https://gemnasium.com/badges/github.com/AfterShip/aftership-sdk-ruby.svg)](https://gemnasium.com/github.com/AfterShip/aftership-sdk-ruby)
