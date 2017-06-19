@@ -14,7 +14,7 @@ This extension helps developers to integrate with Aftership easily.
 
 ## Resources
 
-- <a href="https://docs.postmen.com"> API documentation/overview</a>
+- <a href="https://www.aftership.com/docs/api/4/overview"> API documentation/overview</a>
 - <a href="http://www.rubydoc.info/github/aftership/aftership-sdk-ruby">Ruby technical documentation</a>
 
 
