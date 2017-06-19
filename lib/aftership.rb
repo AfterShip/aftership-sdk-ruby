@@ -13,5 +13,6 @@ module AfterShip
     attr_accessor :api_key
   end
 
+  # Return API endpoint
   URL = ENV['AFTERSHIP_API_ENDPOINT'] || 'https://api.aftership.com'
 end

@@ -34,7 +34,7 @@ module AfterShip
       handle_connection do
         HTTP
           .headers(headers)
-          .post(url(path), options)
+          .post(url(path), json: options)
       end
     end
 
