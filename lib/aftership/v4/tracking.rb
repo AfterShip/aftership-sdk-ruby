@@ -1,7 +1,6 @@
 module AfterShip
   module V4
     class Tracking < AfterShip::V4::Base
-
       # Create a tracking
       #
       # @param tracking_number [ID] Tracking number.
@@ -19,7 +18,8 @@ module AfterShip
       #
       # @param slug Slug.
       # @param tracking_number [ID] Tracking number
-      # @see https://www.aftership.com/docs/api/4/trackings/post-trackings-slug-tracking_number-retrack API documentation
+      # @see https://www.aftership.com/docs/api/4/trackings/post-trackings-slug-tracking_number-retrack
+      # API documentation
       def self.retrack(slug, tracking_number)
         new.post("trackings/#{slug}/#{tracking_number}/retrack")
       end

@@ -2,6 +2,8 @@ AllCops:
   TargetRubyVersion: 2.2
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - "**/*_spec.rb"
 Metrics/ModuleLength:
   Exclude:
     - "**/*_spec.rb"
@@ -10,4 +12,6 @@ Metrics/BlockLength:
   Exclude:
     - "**/*_spec.rb"
 Style/DoubleNegation:
+  Enabled: false
+Style/Documentation:
   Enabled: false

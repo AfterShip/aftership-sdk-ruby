@@ -3,15 +3,15 @@ require 'spec_helper'
 RSpec.describe AfterShip::V4::Tracking do
   describe '#create' do
     it 'runs POST /trackings request' do
-      expect_any_instance_of(AfterShip::Connection).to receive(:post).with('trackings', {tracking: {tracking_number: '123'}})
+      expect_any_instance_of(AfterShip::Connection).to receive(:post).with('trackings', tracking: { tracking_number: '123' })
 
       described_class.create('123')
     end
 
     it 'passes optional params' do
-      expect_any_instance_of(AfterShip::Connection).to receive(:post).with('trackings', {tracking: {foo: :bar, tracking_number: '123'}})
+      expect_any_instance_of(AfterShip::Connection).to receive(:post).with('trackings', tracking: { foo: :bar, tracking_number: '123' })
 
-      described_class.create('123', {foo: :bar})
+      described_class.create('123', foo: :bar)
     end
   end
 

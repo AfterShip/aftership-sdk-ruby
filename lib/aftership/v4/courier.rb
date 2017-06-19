@@ -9,6 +9,7 @@ module AfterShip
 
       # GET /couriers/all
       # Return a list of all couriers.
+      # rubocop:disable Style/AccessorMethodName
       def self.get_all
         warn 'This method is deprecated, please use #all instead'
 
