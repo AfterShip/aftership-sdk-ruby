@@ -45,8 +45,8 @@ Aftership.api_key = 'YOUR API KEY' # set your api key
 ```ruby
 require 'aftership'
 
-# Setup your postmen account (https://postmen.com), obtain an API key.
-# Configure Postmen, see Configuration section
+# Setup your Aftership account (https://secure.aftership.com/login/), obtain an API key.
+# Configure your API key, see Configuration section
 
 ### Fetch all trackings
 
