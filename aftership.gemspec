@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'http', '~> 2.2.1'
+  s.add_dependency 'dry-configurable', '~> 0.5'
 
   s.add_development_dependency 'rspec', '~> 3.0.0'
   s.add_development_dependency 'pry'

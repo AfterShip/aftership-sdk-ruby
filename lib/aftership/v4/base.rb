@@ -1,8 +1,7 @@
 module AfterShip
   module V4
     class Base
-      class AfterShipError < StandardError
-      end
+      AfterShipError = Class.new(StandardError)
 
       # Performs a HTTP GET request.
       #

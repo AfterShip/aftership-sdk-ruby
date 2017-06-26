@@ -36,7 +36,10 @@ This extension helps developers to integrate with Aftership easily.
 
 ```ruby
 
-Aftership.api_key = 'YOUR API KEY' # set your api key
+Aftership.configure do |config|
+  config.api_key = 'YOUR API KEY' # Required
+  config.endpoint = 'http://my-custom-endpoint.example.com' # Optionally set custom endpoint url.
+end
 
 ```
 

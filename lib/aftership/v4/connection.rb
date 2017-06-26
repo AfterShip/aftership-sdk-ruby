@@ -94,12 +94,12 @@ module AfterShip
     end
 
     def url(path)
-      [AfterShip::URL, 'v4', path].join('/')
+      [AfterShip.endpoint, 'v4', path].join('/')
     end
 
     def headers
       @headers ||= {
-        'aftership-api-key' => AfterShip.api_key,
+        'aftership-api-key' => AfterShip.config.api_key,
         'Content-Type' => 'application/json'
       }
     end
