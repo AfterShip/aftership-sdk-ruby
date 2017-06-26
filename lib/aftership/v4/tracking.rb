@@ -1,84 +1,114 @@
-require File.dirname(__FILE__) + '/base'
-
 module AfterShip
   module V4
     class Tracking < AfterShip::V4::Base
-
-      #POST /trackings
+      # Create a tracking
+      #
+      # @param tracking_number [ID] Tracking number.
+      # @see https://www.aftership.com/docs/api/4/trackings/post-trackings API documentation
+      # @example
+      #   .create('1234567') # Create a tracking
+      #   .create('1234567', { title: 'My custom tracking '}) # Creates tracking with custom title
       def self.create(tracking_number, params = {})
-        if tracking_number.empty? || tracking_number.nil?
-          raise ArgumentError.new('tracking_number is required.')
-        else
-          query_hash = {:tracking_number => tracking_number}
-          query_hash.merge!(params)
-          body = {:tracking => query_hash}
-          new(:post, 'trackings', {}, body).call
-        end
+        params[:tracking_number] = tracking_number
+
+        new.post('trackings', tracking: params)
       end
 
-      #POST /trackings/:slug/:tracking_number/retrack
+      # Retrack an expired tracking
+      #
+      # @param slug Slug.
+      # @param tracking_number [ID] Tracking number
+      # @see https://www.aftership.com/docs/api/4/trackings/post-trackings-slug-tracking_number-retrack
+      # API documentation
       def self.retrack(slug, tracking_number)
-        if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
-          raise ArgumentError.new('slug and tracking_number are required.')
-        end
-        new(:post, "trackings/#{slug}/#{tracking_number}/retrack").call
+        new.post("trackings/#{slug}/#{tracking_number}/retrack")
       end
 
-      #DELETE /trackings/:slug/:tracking_number
+      # Delete a tracking
+      #
+      # @param slug Slug.
+      # @param tracking_number [ID] Tracking number
+      # @see https://www.aftership.com/docs/api/4/trackings/delete-trackings API documentation
       def self.delete(slug, tracking_number)
-        if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
-          raise ArgumentError.new('slug and tracking_number are required.')
-        end
-        new(:delete, "trackings/#{slug}/#{tracking_number}").call
+        new.delete("trackings/#{slug}/#{tracking_number}")
       end
 
-      #DELETE /trackings/:id
+      # Delete a tracking
+      #
+      # @param id ID.
+      # @see https://www.aftership.com/docs/api/4/trackings/delete-trackings API documentation
       def self.delete_by_id(id)
-        if id.empty? || id.nil?
-          raise ArgumentError.new('id is required.')
-        end
-        new(:delete, "trackings/#{id}").call
+        new.delete("trackings/#{id}")
       end
 
-      #GET /trackings/:slug/:tracking_number
+      # Get tracking results of a single tracking.
+      #
+      # @param slug Slug.
+      # @param tracking_number [ID] Tracking number
+      # @see https://www.aftership.com/docs/api/4/trackings/get-trackings-slug-tracking_number API documentation
       def self.get(slug, tracking_number, params = {})
-        if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
-          raise ArgumentError.new('slug and tracking_number are required.')
-        end
-        new(:get, "trackings/#{slug}/#{tracking_number}", params).call
+        new.get("trackings/#{slug}/#{tracking_number}", params)
       end
 
-      #GET /trackings/:id
+      # Get tracking results of a single tracking.
+      #
+      # @deprecated
+      # @param id ID.
+      # @see https://www.aftership.com/docs/api/4/trackings/get-trackings-slug-tracking_number API documentation
       def self.get_by_id(id, params = {})
-        if id.empty? || id.nil?
-          raise ArgumentError.new('id is required.')
-        end
-        new(:get, "trackings/#{id}", params).call
+        warn 'This method is deprecated, please use #find instead'
+
+        find(id, params)
       end
 
-      #GET /trackings
+      # Get tracking results of a single tracking.
+      #
+      # @param id ID.
+      # @see https://www.aftership.com/docs/api/4/trackings/get-trackings-slug-tracking_number API documentation
+      def self.find(id, params = {})
+        new.get("trackings/#{id}", params)
+      end
+
+      # Get tracking results of multiple trackings.
+      #
+      # @deprecated
+      # @see https://www.aftership.com/docs/api/4/trackings/get-trackings API documentation
       def self.get_all(params = {})
-        new(:get, 'trackings', params).call
+        warn 'This method is deprecated, please use #all instead'
+
+        all(params)
       end
 
-      #GET /trackings/exports
+      # Get tracking results of multiple trackings.
+      #
+      # @see https://www.aftership.com/docs/api/4/trackings/get-trackings API documentation
+      # @example
+      #   .all # Returns all trackings, default
+      #   .all(slug: "my-slug") # Limit results by slug
+      def self.all(params = {})
+        new.get('trackings', params)
+      end
+
+      # GET /trackings/exports
       def self.export(params = {})
-        new(:get, 'trackings/exports', params).call
+        new.get('trackings/exports', params)
       end
 
-      #PUT /trackings/:slug/:tracking_number
+      # Update a tracking
+      #
+      # @param slug Slug.
+      # @param tracking_number [ID] Tracking number
+      # @see https://www.aftership.com/docs/api/4/trackings/put-trackings-slug-tracking_number API documentation
       def self.update(slug, tracking_number, params = {})
-        if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
-          raise ArgumentError.new('slug and tracking_number are required.')
-        end
-        body = {:tracking => params}
-        new(:put, "trackings/#{slug}/#{tracking_number}", {}, body).call
+        new.put("trackings/#{slug}/#{tracking_number}", tracking: params)
       end
 
-      #Deprecated
-      #POST /trackings/:slug/:tracking_number/reactivate
-      def self.reactivate(slug, tracking_number)
-        raise StandardError.new('This method is deprecated, please use "retrack" instead')
+      # Update a tracking
+      #
+      # @param id ID.
+      # @see https://www.aftership.com/docs/api/4/trackings/put-trackings-slug-tracking_number API documentation
+      def self.update_by_id(id, params = {})
+        new.put("trackings/#{id}", tracking: params)
       end
     end
   end
