@@ -43,6 +43,15 @@ end
 
 ```
 
+You can also set your endpoint url via ENV variable:
+
+```
+AFTERSHIP_API_ENDPOINT='http://my-custom-endpoint.example.com' bundle console
+2.3.3 :001 > AfterShip.endpoint
+ => "http://my-custom-endpoint.example.com"
+ ```
+
+
 ## Getting started
 
 ```ruby
