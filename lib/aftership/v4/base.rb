@@ -1,92 +1,57 @@
-require 'httpclient'
-require 'json'
-
 module AfterShip
   module V4
     class Base
-      class AfterShipError < StandardError;
-      end
-      attr_reader :http_verb_method, :end_point, :query, :body
+      AfterShipError = Class.new(StandardError)
 
-      MAX_TRIAL = 3
-      CALL_SLEEP = 3
-
-      def initialize(http_verb_method, end_point, query = {}, body = {})
-        @http_verb_method = http_verb_method
-        @end_point = end_point
-        @query = query
-        @body = body
-        @trial = 0
-
-        @client = HTTPClient.new
+      # Performs a HTTP GET request.
+      #
+      # @param path [String]
+      # @param options [Hash]
+      # @example
+      #   .get('/labels')
+      #   .get('/labels', { params: { limit: 5 } })
+      def get(path, params = {})
+        Connection.new.get(path, params)
       end
 
-      def call
+      # Performs a HTTP POST request.
+      #
+      # @param path [String]
+      # @param options [Hash]
+      # @example
+      #   .post('/labels')
+      #   .post('/labels', { json: { my: { sample: :data } } })
+      def post(path, params = {})
+        Connection.new.post(path, params)
+      end
 
-        header = {'aftership-api-key' => AfterShip.api_key, 'Content-Type' => 'application/json'}
+      # Performs a HTTP PUT request.
+      #
+      # @param path [String]
+      # @param options [Hash]
+      # @example
+      #   .put('/trackings/foo/123', { sample: :data })
+      def put(path, params = {})
+        Connection.new.put(path, params)
+      end
 
-        parameters = {
-            :query => query,
-            :body => body.to_json,
-            :header => header
+      # Performs a HTTP DELETE request
+      #
+      # @param path [String]
+      # @example
+      #   .delete(' /trackings/foo/123')
+      def delete(path, params = {})
+        Connection.new.delete(path, params)
+      end
+
+      # Prepare parameters for query
+      def parameters
+        @parameters ||= {
+          query: query,
+          body: body.to_json,
+          header: headers
         }
-
-        cf_ray = ''
-        response = nil
-
-        loop do
-          response = @client.send(http_verb_method, url, parameters)
-
-          if response.headers
-            cf_ray = response.headers['CF-RAY']
-          end
-
-
-          if response.body
-            begin
-              response = JSON.parse(response.body)
-              @trial = MAX_TRIAL + 1
-            rescue
-              @trial += 1
-
-              sleep CALL_SLEEP
-
-              response = {
-                  :meta => {
-                      :code => 500,
-                      :message => 'Something went wrong on AfterShip\'s end.',
-                      :type => 'InternalError'
-                  },
-                  :data => {
-                      :body => response.body,
-                      :cf_ray => cf_ray
-                  }
-              }
-            end
-          else
-            response = {
-                :meta => {
-                    :code => 500,
-                    :message => 'Something went wrong on AfterShip\'s end.',
-                    :type => 'InternalError'
-                },
-                :data => {
-                }
-            }
-          end
-
-          break if @trial > MAX_TRIAL
-        end
-
-        response
       end
-
-      private
-
-      def url
-        "#{AfterShip::URL}/v4/#{end_point.to_s}"
-      end
-
     end
   end
 end
