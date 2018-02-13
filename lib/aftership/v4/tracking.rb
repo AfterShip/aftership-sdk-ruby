@@ -21,7 +21,7 @@ module AfterShip
         if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
           raise ArgumentError.new('slug and tracking_number are required.')
         end
-        new(:post, "trackings/#{slug}/#{tracking_number}/retrack").call
+        new(:post, encode_uri("trackings/#{slug}/#{tracking_number}/retrack")).call
       end
 
       #DELETE /trackings/:slug/:tracking_number
@@ -29,7 +29,7 @@ module AfterShip
         if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
           raise ArgumentError.new('slug and tracking_number are required.')
         end
-        new(:delete, "trackings/#{slug}/#{tracking_number}").call
+        new(:delete, encode_uri("trackings/#{slug}/#{tracking_number}")).call
       end
 
       #DELETE /trackings/:id
@@ -37,7 +37,7 @@ module AfterShip
         if id.empty? || id.nil?
           raise ArgumentError.new('id is required.')
         end
-        new(:delete, "trackings/#{id}").call
+        new(:delete, encode_uri("trackings/#{id}")).call
       end
 
       #GET /trackings/:slug/:tracking_number
@@ -45,7 +45,7 @@ module AfterShip
         if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
           raise ArgumentError.new('slug and tracking_number are required.')
         end
-        new(:get, "trackings/#{slug}/#{tracking_number}", params).call
+        new(:get, encode_uri("trackings/#{slug}/#{tracking_number}"), params).call
       end
 
       #GET /trackings/:id
@@ -53,7 +53,7 @@ module AfterShip
         if id.empty? || id.nil?
           raise ArgumentError.new('id is required.')
         end
-        new(:get, "trackings/#{id}", params).call
+        new(:get, encode_uri("trackings/#{id}"), params).call
       end
 
       #GET /trackings
@@ -72,13 +72,19 @@ module AfterShip
           raise ArgumentError.new('slug and tracking_number are required.')
         end
         body = {:tracking => params}
-        new(:put, "trackings/#{slug}/#{tracking_number}", {}, body).call
+        new(:put, encode_uri("trackings/#{slug}/#{tracking_number}"), {}, body).call
       end
 
       #Deprecated
       #POST /trackings/:slug/:tracking_number/reactivate
       def self.reactivate(slug, tracking_number)
         raise StandardError.new('This method is deprecated, please use "retrack" instead')
+      end
+      
+      private
+      
+      def self.encode_uri(uri)
+        URI.encode(uri.to_s)
       end
     end
   end
