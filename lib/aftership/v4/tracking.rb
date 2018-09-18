@@ -17,19 +17,19 @@ module AfterShip
       end
 
       #POST /trackings/:slug/:tracking_number/retrack
-      def self.retrack(slug, tracking_number)
+      def self.retrack(slug, tracking_number, params = {})
         if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
           raise ArgumentError.new('slug and tracking_number are required.')
         end
-        new(:post, "trackings/#{slug}/#{tracking_number}/retrack").call
+        new(:post, "trackings/#{slug}/#{tracking_number}/retrack", params).call
       end
 
       #DELETE /trackings/:slug/:tracking_number
-      def self.delete(slug, tracking_number)
+      def self.delete(slug, tracking_number, params = {})
         if slug.empty? || slug.nil? || tracking_number.empty? || tracking_number.nil?
           raise ArgumentError.new('slug and tracking_number are required.')
         end
-        new(:delete, "trackings/#{slug}/#{tracking_number}").call
+        new(:delete, "trackings/#{slug}/#{tracking_number}", params).call
       end
 
       #DELETE /trackings/:id
