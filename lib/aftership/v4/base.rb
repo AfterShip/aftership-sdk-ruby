@@ -19,6 +19,7 @@ module AfterShip
         @trial = 0
 
         @client = Faraday.new do |faraday|
+          faraday.url_prefix = "#{AfterShip::URL}/v4/"
           faraday.request :url_encoded
           faraday.response :json, content_type: 'application/json'
           faraday.adapter :net_http
@@ -30,9 +31,10 @@ module AfterShip
 
         cf_ray = ''
         output = nil
+        uri = @client.build_url(end_point, query)
 
         loop do
-          response = @client.run_request(http_verb_method, url, @body, headers)
+          response = @client.run_request(http_verb_method, uri, body, headers)
 
           cf_ray = response.headers['CF-RAY'] if response.headers
 
@@ -72,12 +74,6 @@ module AfterShip
           break if @trial > MAX_TRIAL
         end
         output
-      end
-
-      private
-
-      def url
-        "#{AfterShip::URL}/v4/#{end_point}"
       end
     end
   end
