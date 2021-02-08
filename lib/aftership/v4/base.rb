@@ -36,10 +36,10 @@ module AfterShip
         cf_ray = ''
         output = nil
         uri = @client.build_url(end_point, query)
+        request_body = body.empty? ? nil : body.to_json
 
         loop do
-          response = @client.run_request(http_verb_method, uri, body.to_json, headers)
-
+          response = @client.run_request(http_verb_method, uri, request_body, headers)
           cf_ray = response.headers['cf-ray'] if response.headers
 
           if response.body
