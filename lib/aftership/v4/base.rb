@@ -27,23 +27,18 @@ module AfterShip
       end
 
       def call
-        headers = {
-          'aftership-api-key' => AfterShip.api_key,
-          content_type: 'application/json',
-          user_agent: "aftership-sdk-ruby #{AfterShip::VERSION} (#{RUBY_VERSION})"
-        }
+        headers = { 'aftership-api-key' => AfterShip.api_key }
 
         cf_ray = ''
         output = nil
         uri = @client.build_url(end_point, query)
 
         loop do
-          response = @client.run_request(http_verb_method, uri, body.to_json, headers)
+          response = @client.run_request(http_verb_method, uri, body, headers)
 
-          cf_ray = response.headers['cf-ray'] if response.headers
+          cf_ray = response.headers['CF-RAY'] if response.headers
 
           if response.body
-            # This try catch is actually useless (will improve in next major version.)
             begin
               output = response.body
               @trial = MAX_TRIAL + 1

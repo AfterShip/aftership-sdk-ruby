@@ -8,21 +8,11 @@ This extension helps developers to integrate with AfterShip easily.
 
 AfterShip provides an automated way for online merchants to track packages and send their customers delivery status notifications. Customers no longer need to deal with tracking numbers and track packages on their own. With AfterShip, online merchants extend their customer service after the point of purchase by keeping their customers actively informed, while saving time and money by reducing customers’ questions about the status of their purchase delivery.
 
-## Migration to 4.5.0+
-
-We suggest all users to upgrade your `aftership` gem to v4.5.0 as any earlier versions are NOT maintained, which also means you will need to upgrade your ruby version to at least 2.3.0 to be able to use `faraday` the new http client of the revamped `aftership` gem.
-
 ### Changes
-* 2021-02-08 4.5.0
-  - Downgraded `faraday` to `1.0.1` that accepts ruby 2.3.0+ as required version.
-  - Updated request User agent to follow AfterShip SDK guideline.
-  - Required ruby version is now 2.3.0+
-
 * 2021-02-08 4.4.0
   - Removed `httpclient` and used `faraday` 1.3 as http client
   - Polished project with prettified formatting
   - Resolved [#31](https://github.com/AfterShip/aftership-sdk-ruby/issues/31): Deprecation of encryption algorithms below 256 bits
-  - Required ruby version updated to 2.4.0+
 
 * 2016-01-11 4.3.1
   - Updated gem `httpclient` version to 2.7.1
@@ -55,7 +45,7 @@ We suggest all users to upgrade your `aftership` gem to v4.5.0 as any earlier ve
 1. Add the following line to your application's Gemfile
 
 ```ruby
-gem "aftership", "~> 4.5"
+gem "aftership", "~> 4.4"
 ```
 
 2. Run bundler
