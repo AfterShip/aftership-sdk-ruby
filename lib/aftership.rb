@@ -10,5 +10,5 @@ module AfterShip
   end
 
   URL = ENV['AFTERSHIP_API_ENDPOINT'] || 'https://api.aftership.com'
-  VERSION = '4.5.0'
+  VERSION = '4.5.1'
 end
