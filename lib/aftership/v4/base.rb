@@ -1,10 +1,10 @@
-require 'httpclient'
-require 'json'
+require 'faraday'
+require 'faraday_middleware'
 
 module AfterShip
   module V4
     class Base
-      class AfterShipError < StandardError;
+      class AfterShipError < StandardError
       end
       attr_reader :http_verb_method, :end_point, :query, :body
 
@@ -18,75 +18,63 @@ module AfterShip
         @body = body
         @trial = 0
 
-        @client = HTTPClient.new
+        @client = Faraday.new do |faraday|
+          faraday.url_prefix = "#{AfterShip::URL}/v4/"
+          faraday.request :url_encoded
+          faraday.response :json, content_type: 'application/json'
+          faraday.adapter :net_http
+        end
       end
 
       def call
-
-        header = {'aftership-api-key' => AfterShip.api_key, 'Content-Type' => 'application/json'}
-
-        parameters = {
-            :query => query,
-            :body => body.to_json,
-            :header => header
-        }
+        headers = { 'aftership-api-key' => AfterShip.api_key }
 
         cf_ray = ''
-        response = nil
+        output = nil
+        uri = @client.build_url(end_point, query)
 
         loop do
-          response = @client.send(http_verb_method, url, parameters)
+          response = @client.run_request(http_verb_method, uri, body, headers)
 
-          if response.headers
-            cf_ray = response.headers['CF-RAY']
-          end
-
+          cf_ray = response.headers['CF-RAY'] if response.headers
 
           if response.body
             begin
-              response = JSON.parse(response.body)
+              output = response.body
               @trial = MAX_TRIAL + 1
-            rescue
+            rescue StandardError
               @trial += 1
 
               sleep CALL_SLEEP
 
-              response = {
-                  :meta => {
-                      :code => 500,
-                      :message => 'Something went wrong on AfterShip\'s end.',
-                      :type => 'InternalError'
-                  },
-                  :data => {
-                      :body => response.body,
-                      :cf_ray => cf_ray
-                  }
+              output = {
+                meta: {
+                  code: 500,
+                  message: 'Something went wrong on AfterShip\'s end.',
+                  type: 'InternalError'
+                },
+                data: {
+                  body: response.body,
+                  cf_ray: cf_ray
+                }
               }
             end
           else
-            response = {
-                :meta => {
-                    :code => 500,
-                    :message => 'Something went wrong on AfterShip\'s end.',
-                    :type => 'InternalError'
-                },
-                :data => {
-                }
+            output = {
+              meta: {
+                code: 500,
+                message: 'Something went wrong on AfterShip\'s end.',
+                type: 'InternalError'
+              },
+              data: {
+              }
             }
           end
 
           break if @trial > MAX_TRIAL
         end
-
-        response
+        output
       end
-
-      private
-
-      def url
-        "#{AfterShip::URL}/v4/#{end_point.to_s}"
-      end
-
     end
   end
 end
