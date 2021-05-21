@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.requirements << 'none'
 
-  s.add_dependency 'faraday', '~> 1.0', '>= 1.0.1'
-  s.add_dependency 'faraday_middleware', '~> 1.0'
+  s.add_dependency 'faraday'
+  s.add_dependency 'faraday_middleware'
 
   s.add_development_dependency 'pry'
   s.add_development_dependency 'rspec', '~> 2.14.1'
