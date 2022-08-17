@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.licenses = ['MIT']
   s.summary = 'Formerly known as aftership_ruby and a wrapper for AfterShip API. Support the latest V3/V4 API'
   s.description = 'Developed for easy integration with AfterShip'
-  s.required_ruby_version = '>= 2.3.0'
+  s.required_ruby_version = '>= 2.6'
 
   s.author = ['AfterShip Limited']
   s.email = ['support@aftership.com']
