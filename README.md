@@ -8,18 +8,22 @@ This extension helps developers to integrate with AfterShip easily.
 
 AfterShip provides an automated way for online merchants to track packages and send their customers delivery status notifications. Customers no longer need to deal with tracking numbers and track packages on their own. With AfterShip, online merchants extend their customer service after the point of purchase by keeping their customers actively informed, while saving time and money by reducing customers’ questions about the status of their purchase delivery.
 
-## Migration to 4.5.2+
+## Migration to 5.0.0+
 
-We suggest all users to upgrade your `aftership` gem to v4.5.2 as any earlier versions are NOT maintained, which also means you will need to upgrade your ruby version to at least 2.3.0 to be able to use `faraday` the new http client of the revamped `aftership` gem.
+We suggest all users to upgrade your `aftership` gem to v5.0.0 as any earlier versions are NOT maintained, which also means you will need to upgrade your ruby version to at least 2.6 to be able to use `faraday` the new http client of the revamped `aftership` gem.
 
 If you want to use recent versions of Faraday, update your Gemfile as below:
 
 ```ruby
-gem "aftership", "~> 4.5.2"
-gem 'faraday', '~> 1.3.0'
+gem "aftership", "~> 5.0.0"
+gem 'faraday', '~> 2.7.1'
 ```
 
 ### Changes
+* 2022-12-16 5.0.0
+  - Merged [#42](https://github.com/AfterShip/aftership-sdk-ruby/pull/42): Update faraday dependency to support faraday 2.x
+  - Merged [#43](https://github.com/AfterShip/aftership-sdk-ruby/pull/43): Update faraday minimum version to 2.0.1
+
 * 2021-02-08 4.5.2
   - Merged [#39](https://github.com/AfterShip/aftership-sdk-ruby/pull/39): Add compatibility for recent versions of Faraday
 
@@ -67,7 +71,7 @@ gem 'faraday', '~> 1.3.0'
 1. Add the following line to your application's Gemfile
 
 ```ruby
-gem "aftership", "~> 4.5.2"
+gem "aftership", "~> 5.0.0"
 ```
 
 2. Run bundler
@@ -131,7 +135,7 @@ Released under the MIT license. See the LICENSE file for the complete wording.
 
 
 ## Contributor
-
+- Sergio Marques <sergio@raylo.com>
 - Ryan Zou [twitter:renyuanz](https://twitter.com/ry_zou)
 - Alex Topalov <me@alextopalov.com>
 
