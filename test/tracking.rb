@@ -7,7 +7,6 @@ puts AfterShip::V4::Tracking.create('RA123456780HK', {:emails => ['a@abcd.com', 
 
 puts AfterShip::V4::Tracking.get('hong-kong-post', 'RA123456780HK')
 puts AfterShip::V4::Tracking.get_all
-puts AfterShip::V4::Tracking.export
 
 puts AfterShip::V4::Tracking.update('hong-kong-post', 'RA123456780HK', {:title => 'Testing'})
 

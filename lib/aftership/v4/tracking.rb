@@ -61,11 +61,6 @@ module AfterShip
         new(:get, 'trackings', params).call
       end
 
-      # GET /trackings/exports
-      def self.export(params = {})
-        new(:get, 'trackings/exports', params).call
-      end
-
       # PUT /trackings/:slug/:tracking_number
       def self.update(slug, tracking_number, params = {})
         if slug.nil? || slug.empty? || tracking_number.nil? || tracking_number.empty?
