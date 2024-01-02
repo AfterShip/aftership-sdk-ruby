@@ -18,7 +18,7 @@ module AfterShip
         @trial = 0
 
         @client = Faraday.new do |faraday|
-          faraday.url_prefix = "#{AfterShip::URL}/v4/"
+          faraday.url_prefix = "#{AfterShip::URL}/tracking/2023-10/"
           faraday.request :url_encoded
           faraday.response :json, content_type: 'application/json'
           faraday.adapter :net_http
@@ -27,7 +27,7 @@ module AfterShip
 
       def call
         headers = {
-          'aftership-api-key' => AfterShip.api_key,
+          'as-api-key' => AfterShip.api_key,
           content_type: 'application/json',
           user_agent: "aftership-sdk-ruby #{AfterShip::VERSION} (#{RUBY_VERSION})"
         }
